@@ -4,12 +4,15 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import {HttpModule} from '@angular/http';
 import { MyApp } from './app.component';
 import { FavorisPage } from '../pages/favoris/favoris';
 import { LoginPage } from '../pages/login/login';
 import { TrailersPage } from '../pages/trailers/trailers';
 import { PreferencesPage } from '../pages/preferences/preferences';
 import { TrailerPage } from '../pages/trailer/trailer';
+import { LoginFormComponent } from '../components/login-form/login-form';
+import {ApiService} from './api.service';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,13 @@ import { TrailerPage } from '../pages/trailer/trailer';
     LoginPage,
     TrailersPage,
     PreferencesPage,
-    TrailerPage
+    TrailerPage,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +41,8 @@ import { TrailerPage } from '../pages/trailer/trailer';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiService
   ]
 })
 export class AppModule {}
